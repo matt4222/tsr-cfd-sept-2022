@@ -2,7 +2,9 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "ES6",
-    "sourceMap": true
-  },
-  "include": ["src"]
+    "sourceMap": true,
+    "module": "es6",
+    "allowJs": true,
+    "moduleResolution": "node"
+  }
 }
