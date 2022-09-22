@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 
 import { x0, r0, y0, r } from "./constants";
 
