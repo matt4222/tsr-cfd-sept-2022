@@ -1,3 +1,5 @@
+import "./style.css";
+
 import { x0, r0, y0, r } from "./constants";
 
 const samples = 10;
