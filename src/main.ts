@@ -1,11 +1,8 @@
-console.log("start");
+import { r, r0, x0, y0 } from "./constants.js";
 
 const samples = 10;
-const r = 1;
 
-const x0 = 50;
-const y0 = 50;
-const r0 = 45;
+console.log("start");
 
 const svgns = "http://www.w3.org/2000/svg";
 const container = document.querySelector("g.samples");
