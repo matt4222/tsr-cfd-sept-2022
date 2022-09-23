@@ -1,10 +1,11 @@
 import { Config } from "./interfaces/Config";
-import { querySelector } from "./utils";
+import { querySelector, sleep } from "./utils";
 
 type CallbackFn = (newConfig: Config) => void;
 
 export class Command {
   callback: CallbackFn = () => {};
+  isPlaying = false;
 
   constructor(public config: Config) {
     this.render();
@@ -13,6 +14,17 @@ export class Command {
 
   onUpdate(callback: CallbackFn) {
     this.callback = callback;
+  }
+
+  async play() {
+    while (this.isPlaying) {
+      const f = this.config.multiplicationFactor + 0.01;
+      this.config.multiplicationFactor = (Math.round(f * 1e2) / 1e2) % 100;
+
+      this.render();
+      this.callback(this.config);
+      await sleep(18);
+    }
   }
 
   render() {
@@ -26,6 +38,8 @@ export class Command {
       );
       inputElt.value = this.config[key] + "";
     }
+    const button = querySelector("div.command button");
+    button.innerHTML = this.isPlaying ? "Pause" : "Play";
   }
 
   setActions() {
@@ -41,5 +55,14 @@ export class Command {
         this.callback(this.config);
       });
     }
+
+    const button = querySelector("div.command button");
+    button.addEventListener("click", () => {
+      this.isPlaying = !this.isPlaying;
+      this.render();
+      if (this.isPlaying) {
+        this.play();
+      }
+    });
   }
 }

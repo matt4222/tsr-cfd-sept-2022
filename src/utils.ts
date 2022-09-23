@@ -37,3 +37,9 @@ export const drawLine = (p1: Point, p2: Point): void => {
   line.setAttributeNS(null, "y2", p2.y + "");
   lineContainer.appendChild(line);
 };
+
+export const sleep = (delay: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+};
