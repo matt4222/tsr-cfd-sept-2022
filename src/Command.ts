@@ -8,6 +8,7 @@ export class Command {
 
   constructor(public config: Config) {
     this.render();
+    this.setActions();
   }
 
   onUpdate(callback: CallbackFn) {
@@ -24,6 +25,21 @@ export class Command {
         HTMLInputElement
       );
       inputElt.value = this.config[key] + "";
+    }
+  }
+
+  setActions() {
+    const keys: (keyof Config)[] = ["samples", "multiplicationFactor"];
+    for (const key of keys) {
+      const inputElt = querySelector(
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
+      inputElt.addEventListener("input", () => {
+        this.config[key] = +inputElt.value;
+        this.render();
+        this.callback(this.config);
+      });
     }
   }
 }
