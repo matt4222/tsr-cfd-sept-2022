@@ -11,12 +11,20 @@ export const getCirclePoint = (angle: number): Point => {
   return { x: x, y: y };
 };
 
-export const querySelector = (cssSelector: string) => {
+export const querySelector = <T extends Element>(
+  cssSelector: string,
+  type?: new () => T
+) => {
   const elt = document.querySelector(cssSelector);
   if (elt === null) {
     throw new Error(`Cannot find element with selector: ${cssSelector}`);
   }
-  return elt;
+  if (type && !(elt instanceof type)) {
+    throw new Error(
+      `Cannot find element of type ${type} with selector: ${cssSelector}`
+    );
+  }
+  return elt as T;
 };
 
 const lineContainer = querySelector("svg g.lines");
