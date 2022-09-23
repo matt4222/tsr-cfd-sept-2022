@@ -4,6 +4,7 @@ import { querySelector, sleep } from "./utils";
 type CallbackFn = (newConfig: Config) => void;
 
 export class Command {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   callback: CallbackFn = () => {};
   isPlaying = false;
 
