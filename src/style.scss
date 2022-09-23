@@ -4,6 +4,13 @@ svg {
   border: 0.1em solid $color;
   width: 50em;
   height: 30em;
+
+  g.lines {
+    line {
+      stroke: $color;
+      stroke-width: 0.02em;
+    }
+  }
 }
 
 circle {
@@ -15,3 +22,5 @@ circle {
 .samples circle {
   fill: $color;
 }
+
+

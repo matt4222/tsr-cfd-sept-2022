@@ -1,6 +1,6 @@
 import { r, svgns } from "./constants";
 import { Config } from "./interfaces/Config";
-import { getAngle, getCirclePoint, querySelector } from "./utils";
+import { drawLine, getAngle, getCirclePoint, querySelector } from "./utils";
 
 export class Board {
   config: Config = {
@@ -20,7 +20,14 @@ export class Board {
   }
 
   drawLines() {
-    throw new Error("Method not implemented.");
+    const samples = this.config.samples;
+    for (let i = 0; i < samples; i++) {
+      const angle1 = getAngle(i, samples);
+      const p1 = getCirclePoint(angle1);
+      const angle2 = getAngle(i * this.config.multiplicationFactor, samples);
+      const p2 = getCirclePoint(angle2);
+      drawLine(p1, p2);
+    }
   }
 
   drawSamplePoints() {
