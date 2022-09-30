@@ -1,4 +1,4 @@
-import { r, r0, x0, y0 } from "./constants";
+import { r, r0, size, x0, y0 } from "./constants";
 import { Config } from "./interfaces/Config";
 import { Point } from "./interfaces/Point";
 import { getAngle, getCirclePoint, querySelector } from "./utils";
@@ -9,15 +9,21 @@ export class Board {
     multiplicationFactor: 3,
   };
 
+  constructor() {
+    const element = querySelector("canvas", HTMLCanvasElement);
+    element.width = size;
+    element.height = size;
+  }
+
   clean() {
-    const canvas: HTMLCanvasElement = querySelector("canvas");
+    const canvas = querySelector("canvas", HTMLCanvasElement);
     if (canvas.getContext !== null) {
       const ctx = canvas.getContext("2d");
       if (ctx === null) {
         throw new Error("ctx not exist.");
       }
 
-      ctx.clearRect(0, 0, 400, 400);
+      ctx.clearRect(0, 0, size, size);
     }
   }
 
@@ -29,7 +35,7 @@ export class Board {
   }
 
   drawCirle() {
-    const canvas: HTMLCanvasElement = querySelector("canvas");
+    const canvas = querySelector("canvas", HTMLCanvasElement);
     if (canvas.getContext !== null) {
       const ctx = canvas.getContext("2d");
       if (ctx === null) {
@@ -54,7 +60,7 @@ export class Board {
   }
 
   drawLine(p1: Point, p2: Point): void {
-    const canvas: HTMLCanvasElement = querySelector("canvas");
+    const canvas = querySelector("canvas", HTMLCanvasElement);
     if (canvas.getContext !== null) {
       const ctx = canvas.getContext("2d");
       if (ctx === null) {
@@ -71,7 +77,7 @@ export class Board {
   drawSamplePoints() {
     const samples = this.config.samples;
 
-    const canvas: HTMLCanvasElement = querySelector("canvas");
+    const canvas = querySelector("canvas", HTMLCanvasElement);
     if (canvas.getContext !== null) {
       const ctx = canvas.getContext("2d");
       if (ctx === null) {
