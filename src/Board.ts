@@ -1,6 +1,7 @@
-import { r, svgns } from "./constants";
+import { r, r0, x0, y0 } from "./constants";
 import { Config } from "./interfaces/Config";
-import { drawLine, getAngle, getCirclePoint, querySelector } from "./utils";
+import { Point } from "./interfaces/Point";
+import { getAngle, getCirclePoint, querySelector } from "./utils";
 
 export class Board {
   config: Config = {
@@ -9,14 +10,36 @@ export class Board {
   };
 
   clean() {
-    querySelector("svg g.samples").innerHTML = "";
-    querySelector("svg g.lines").innerHTML = "";
+    const canvas: HTMLCanvasElement = querySelector("canvas");
+    if (canvas.getContext !== null) {
+      const ctx = canvas.getContext("2d");
+      if (ctx === null) {
+        throw new Error("ctx not exist.");
+      }
+
+      ctx.clearRect(0, 0, 400, 400);
+    }
   }
 
   draw() {
     this.clean();
+    this.drawCirle();
     this.drawSamplePoints();
     this.drawLines();
+  }
+
+  drawCirle() {
+    const canvas: HTMLCanvasElement = querySelector("canvas");
+    if (canvas.getContext !== null) {
+      const ctx = canvas.getContext("2d");
+      if (ctx === null) {
+        throw new Error("ctx not exist.");
+      }
+
+      ctx.beginPath();
+      ctx.arc(x0, y0, r0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
   }
 
   drawLines() {
@@ -26,26 +49,44 @@ export class Board {
       const p1 = getCirclePoint(angle1);
       const angle2 = getAngle(i * this.config.multiplicationFactor, samples);
       const p2 = getCirclePoint(angle2);
-      drawLine(p1, p2);
+      this.drawLine(p1, p2);
+    }
+  }
+
+  drawLine(p1: Point, p2: Point): void {
+    const canvas: HTMLCanvasElement = querySelector("canvas");
+    if (canvas.getContext !== null) {
+      const ctx = canvas.getContext("2d");
+      if (ctx === null) {
+        throw new Error("ctx not exist.");
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
     }
   }
 
   drawSamplePoints() {
     const samples = this.config.samples;
 
-    console.log("start");
+    const canvas: HTMLCanvasElement = querySelector("canvas");
+    if (canvas.getContext !== null) {
+      const ctx = canvas.getContext("2d");
+      if (ctx === null) {
+        throw new Error("ctx not exist.");
+      }
 
-    const container = querySelector("g.samples");
+      for (let i = 0; i < samples; i++) {
+        const angle = getAngle(i, samples);
+        const { x, y } = getCirclePoint(angle);
 
-    for (let i = 0; i < samples; i++) {
-      const angle = getAngle(i, samples);
-      const { x, y } = getCirclePoint(angle);
-
-      const circle = document.createElementNS(svgns, "circle");
-      circle.setAttributeNS(null, "cx", x + "");
-      circle.setAttributeNS(null, "cy", String(y));
-      circle.setAttributeNS(null, "r", r.toString());
-      container.appendChild(circle);
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
     }
   }
 

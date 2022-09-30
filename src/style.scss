@@ -1,4 +1,4 @@
-$color: black;
+$color: rgb(0, 0, 0);
 
 * {
   box-sizing: border-box;
@@ -8,27 +8,8 @@ body {
   font-family: sans-serif;
 }
 
-svg {
+canvas {
   border: 0.1em solid $color;
-  width: 50em;
-  height: 30em;
-
-  g.lines {
-    line {
-      stroke: $color;
-      stroke-width: 0.02em;
-    }
-  }
-}
-
-circle {
-  fill: transparent;
-  stroke: $color;
-  stroke-width: 0.02em;
-}
-
-.samples circle {
-  fill: $color;
 }
 
 div.command {

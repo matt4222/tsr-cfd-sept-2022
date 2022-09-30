@@ -1,4 +1,4 @@
-import { x0, r0, y0, svgns } from "./constants";
+import { x0, r0, y0 } from "./constants";
 import { Point } from "./interfaces/Point";
 
 export const getAngle = (i: number, samples: number) => {
@@ -25,17 +25,6 @@ export const querySelector = <T extends Element>(
     );
   }
   return elt as T;
-};
-
-const lineContainer = querySelector("svg g.lines");
-
-export const drawLine = (p1: Point, p2: Point): void => {
-  const line = document.createElementNS(svgns, "line");
-  line.setAttributeNS(null, "x1", p1.x + "");
-  line.setAttributeNS(null, "y1", p1.y + "");
-  line.setAttributeNS(null, "x2", p2.x + "");
-  line.setAttributeNS(null, "y2", p2.y + "");
-  lineContainer.appendChild(line);
 };
 
 export const sleep = (delay: number) => {
