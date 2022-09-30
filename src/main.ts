@@ -1,15 +1,16 @@
 import "./style.scss";
 
+import { Config } from "./interfaces/Config";
 import { Board } from "./Board";
 import { Command } from "./Command";
-import { Config } from "./interfaces/Config";
 
-const board = new Board();
 const config: Config = {
   samples: 10,
-  multiplicationFactor: 1,
+  multiplicationFactor: 2,
+  size: 300,
 };
-board.setConfig(config);
+
+const board = new Board(config);
 board.draw();
 
 const command = new Command(config);

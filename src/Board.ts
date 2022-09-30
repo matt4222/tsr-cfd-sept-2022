@@ -1,18 +1,15 @@
-import { r, r0, size, x0, y0 } from "./constants";
 import { Config } from "./interfaces/Config";
 import { Point } from "./interfaces/Point";
 import { getAngle, getCirclePoint, querySelector } from "./utils";
 
 export class Board {
-  config: Config = {
-    samples: 50,
-    multiplicationFactor: 3,
-  };
+  x0: number;
+  r0: number;
+  r = 3;
 
-  constructor() {
-    const element = querySelector("canvas", HTMLCanvasElement);
-    element.width = size;
-    element.height = size;
+  constructor(public config: Config) {
+    this.x0 = this.config.size / 2;
+    this.r0 = this.x0 * 0.9;
   }
 
   clean() {
@@ -23,15 +20,22 @@ export class Board {
         throw new Error("ctx not exist.");
       }
 
-      ctx.clearRect(0, 0, size, size);
+      ctx.clearRect(0, 0, this.config.size, this.config.size);
     }
   }
 
   draw() {
     this.clean();
+    this.drawCanvas();
     this.drawCirle();
     this.drawSamplePoints();
     this.drawLines();
+  }
+
+  drawCanvas() {
+    const element = querySelector("canvas", HTMLCanvasElement);
+    element.width = this.config.size;
+    element.height = this.config.size;
   }
 
   drawCirle() {
@@ -43,7 +47,7 @@ export class Board {
       }
 
       ctx.beginPath();
-      ctx.arc(x0, y0, r0, 0, Math.PI * 2);
+      ctx.arc(this.x0, this.x0, this.r0, 0, Math.PI * 2);
       ctx.stroke();
     }
   }
@@ -52,9 +56,9 @@ export class Board {
     const samples = this.config.samples;
     for (let i = 0; i < samples; i++) {
       const angle1 = getAngle(i, samples);
-      const p1 = getCirclePoint(angle1);
+      const p1 = getCirclePoint(this.x0, this.x0, this.r0, angle1);
       const angle2 = getAngle(i * this.config.multiplicationFactor, samples);
-      const p2 = getCirclePoint(angle2);
+      const p2 = getCirclePoint(this.x0, this.x0, this.r0, angle2);
       this.drawLine(p1, p2);
     }
   }
@@ -86,10 +90,10 @@ export class Board {
 
       for (let i = 0; i < samples; i++) {
         const angle = getAngle(i, samples);
-        const { x, y } = getCirclePoint(angle);
+        const { x, y } = getCirclePoint(this.x0, this.x0, this.r0, angle);
 
         ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.arc(x, y, this.r, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
       }
@@ -98,5 +102,8 @@ export class Board {
 
   setConfig(config: Config) {
     this.config = config;
+
+    this.x0 = this.config.size / 2;
+    this.r0 = this.x0 * 0.9;
   }
 }

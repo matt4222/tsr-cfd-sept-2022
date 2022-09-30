@@ -1,11 +1,15 @@
-import { x0, r0, y0 } from "./constants";
 import { Point } from "./interfaces/Point";
 
 export const getAngle = (i: number, samples: number) => {
   return (i * 2 * Math.PI) / samples - Math.PI / 2;
 };
 
-export const getCirclePoint = (angle: number): Point => {
+export const getCirclePoint = (
+  x0: number,
+  y0: number,
+  r0: number,
+  angle: number
+): Point => {
   const x = x0 + r0 * Math.cos(angle);
   const y = y0 + r0 * Math.sin(angle);
   return { x: x, y: y };

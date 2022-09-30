@@ -29,29 +29,29 @@ export class Command {
   }
 
   render() {
-    const keys: (keyof Config)[] = ["samples", "multiplicationFactor"];
+    const keys: (keyof Config)[] = ["samples", "multiplicationFactor", "size"];
     for (const key of keys) {
       const elt = querySelector(`div.command label.${key} span`);
       elt.innerHTML = this.config[key] + "";
-      const inputElt = querySelector(
+      const inputElement = querySelector(
         `div.command label.${key} input`,
         HTMLInputElement
       );
-      inputElt.value = this.config[key] + "";
+      inputElement.value = this.config[key] + "";
     }
     const button = querySelector("div.command button");
     button.innerHTML = this.isPlaying ? "Pause" : "Play";
   }
 
   setActions() {
-    const keys: (keyof Config)[] = ["samples", "multiplicationFactor"];
+    const keys: (keyof Config)[] = ["samples", "multiplicationFactor", "size"];
     for (const key of keys) {
-      const inputElt = querySelector(
+      const inputElement = querySelector(
         `div.command label.${key} input`,
         HTMLInputElement
       );
-      inputElt.addEventListener("input", () => {
-        this.config[key] = +inputElt.value;
+      inputElement.addEventListener("input", () => {
+        this.config[key] = +inputElement.value;
         this.render();
         this.callback(this.config);
       });

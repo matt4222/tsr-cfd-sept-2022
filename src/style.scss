@@ -13,21 +13,22 @@ canvas {
 }
 
 div.command {
-  border: 0.1em solid $color;
-  width: 50em;
-  height: 11em;
+  height: 6em;
   padding: 0.5em;
 
   display: flex;
-  flex-flow: column;
-  gap: 0.5em;
+  flex-flow: row;
+  align-items: center;
+  gap: 2em;
 
-  input {
-    width: 100%;
+  label {
+    width: 20em;
+    input {
+      width: 100%;
+    }
   }
 
   button {
-    align-self: center;
     padding: 0.5em 1em;
     margin-top: 1em;
     cursor: pointer;
