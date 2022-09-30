@@ -2,7 +2,7 @@ import { x0, r0, y0, svgns } from "./constants";
 import { Point } from "./interfaces/Point";
 
 export const getAngle = (i: number, samples: number) => {
-  return (i * 2 * Math.PI) / samples;
+  return (i * 2 * Math.PI) / samples - Math.PI / 2;
 };
 
 export const getCirclePoint = (angle: number): Point => {

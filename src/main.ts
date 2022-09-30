@@ -7,7 +7,7 @@ import { Config } from "./interfaces/Config";
 const board = new Board();
 const config: Config = {
   samples: 10,
-  multiplicationFactor: 6,
+  multiplicationFactor: 1,
 };
 board.setConfig(config);
 board.draw();
