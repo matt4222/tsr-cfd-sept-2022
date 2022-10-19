@@ -1,0 +1,93 @@
+{
+  "columns": [
+    {
+      "id": "index",
+      "label": "Index",
+      "width": "35px",
+      "type": "number",
+      "updatable": false
+    },
+    {
+      "id": "name",
+      "label": "Name",
+      "width": "90px",
+      "type": "string",
+      "updatable": true
+    },
+    {
+      "id": "birth_date",
+      "label": "Date of birth",
+      "width": "80px",
+      "type": "date",
+      "updatable": true
+    },
+    {
+      "id": "age",
+      "label": "Age",
+      "width": "20px",
+      "type": "number",
+      "updatable": true
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "width": "120px",
+      "type": "string",
+      "updatable": true
+    },
+    {
+      "id": "phone",
+      "label": "Phone number",
+      "width": "120px",
+      "type": "string",
+      "updatable": true
+    }
+  ],
+  "rows": [
+    {
+      "index": 0,
+      "name": "Rosanne",
+      "age": 30,
+      "birth_date": "2015-10-26",
+      "location": "Dixie",
+      "phone": "(913) 532-2650",
+      "sex": "f"
+    },
+    {
+      "index": 1,
+      "name": "Eliza",
+      "age": 56,
+      "birth_date": "2020-09-15",
+      "location": "Morningside",
+      "phone": "(957) 571-3358",
+      "sex": "f"
+    },
+    {
+      "index": 2,
+      "name": "Howard",
+      "age": 49,
+      "birth_date": "2022-08-13",
+      "location": "Hayden",
+      "phone": "(841) 415-3243",
+      "sex": "f"
+    },
+    {
+      "index": 3,
+      "name": "Griffin",
+      "age": 53,
+      "birth_date": "2014-08-28",
+      "location": "Saddlebrooke",
+      "phone": "(932) 598-2762",
+      "sex": "f"
+    },
+    {
+      "index": 4,
+      "name": "Burt",
+      "age": 43,
+      "birth_date": "2019-02-04",
+      "location": "Conway",
+      "phone": "(963) 453-2465",
+      "sex": "f"
+    }
+  ]
+}
